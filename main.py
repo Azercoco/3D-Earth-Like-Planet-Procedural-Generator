@@ -183,7 +183,7 @@ def apply_illum(im_rgbref_base, normal_base, cloud_map, ilum=(1, 0.5, 1)):
 
 
 if __name__ == '__main__':
-    for seed in range(90, 100):
+    for seed in range(0, 100):
         a, b, c = gen_rgbbase_and_normal(seed=seed)
         im = apply_illum(a, b, c)
         plt.axis("off")
