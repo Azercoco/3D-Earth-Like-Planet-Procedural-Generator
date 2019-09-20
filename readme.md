@@ -1,4 +1,4 @@
-# An Eath-Like procedural planet generator
+# An Earth-Like procedural planet generator
 
 
 #### Exemple 1
