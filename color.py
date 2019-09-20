@@ -1,5 +1,6 @@
 import numpy as np
 
+
 biome_deep_water = {
     "maxA": 0,
     "minA": None,
@@ -292,7 +293,7 @@ def colorize(x, y, z, c, vT, vH):
     T = T_pole + np.cos(theta) * (T_eq - T_pole) + (vT - 0.5) * 20
     T[c > 0.5] -= 7 * A[c > 0.5] / 1000
 
-    H = humidity(theta) * (1 + (vH - 0.5) )
+    H = humidity(theta) * (1 + (vH - 0.5))
 
     rgbref = np.zeros((len(c), 4))
     pond_tot = np.zeros_like(c)

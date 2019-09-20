@@ -19,6 +19,56 @@ def hash13(p3x, p3y, p3z):
     return fract((p3x + p3y) * p3z)
 
 
+def hash83(p3x, p3y, p3z, p3X, p3Y, p3Z):
+    p3xx = (p3x + 19.19)
+    p3yy = (p3y + 19.19)
+    p3zz = (p3z + 19.19)
+    p3XX = (p3X + 19.19)
+    p3YY = (p3Y + 19.19)
+    p3ZZ = (p3Z + 19.19)
+
+    uxy = p3x * p3yy
+    uyz = p3y * p3zz
+    uzx = p3z * p3xx
+
+    uxY = p3x * p3YY
+    uyZ = p3y * p3ZZ
+    uzX = p3z * p3XX
+
+    uXy = p3X * p3yy
+    uYz = p3Y * p3zz
+    uZx = p3Z * p3xx
+
+    uXY = p3X * p3YY
+    uYZ = p3Y * p3ZZ
+    uZX = p3Z * p3XX
+
+    sxyz = uxy + uyz + uzx
+    sXyz = uXy + uyz + uzX
+    sxYz = uxY + uYz + uzx
+    sXYz = uXY + uYz + uzX
+    sxyZ = uxy + uyZ + uZx
+    sXyZ = uXy + uyZ + uZX
+    sxYZ = uxY + uYZ + uZx
+    sXYZ = uXY + uYZ + uZX
+
+    nxy = p3x + p3y
+    nXy = p3X + p3y
+    nxY = p3x + p3Y
+    nXY = p3X + p3Y
+
+    vxyz = fract((nxy + sxyz + sxyz) * (p3z + sxyz))
+    vXyz = fract((nXy + sXyz + sXyz) * (p3z + sXyz))
+    vxYz = fract((nxY + sxYz + sxYz) * (p3z + sxYz))
+    vXYz = fract((nXY + sXYz + sXYz) * (p3z + sXYz))
+    vxyZ = fract((nxy + sxyZ + sxyZ) * (p3Z + sxyZ))
+    vXyZ = fract((nXy + sXyZ + sXyZ) * (p3Z + sXyZ))
+    vxYZ = fract((nxY + sxYZ + sxYZ) * (p3Z + sxYZ))
+    vXYZ = fract((nXY + sXYZ + sXYZ) * (p3Z + sXYZ))
+
+    return vxyz, vXyz, vxYz, vXYz, vxyZ, vXyZ, vxYZ, vXYZ
+
+
 def polynom_interpol(x):
     x2 = x * x
     x4 = x2 * x2
@@ -46,14 +96,8 @@ def noise3D(x, y, z, seed=42):
     p3Y = fract((iy + 1) * .1031)
     p3Z = fract((iz + 1) * .1031)
 
-    vxyz = hash13(p3x, p3y, p3z)
-    vXyz = hash13(p3X, p3y, p3z)
-    vxYz = hash13(p3x, p3Y, p3z)
-    vXYz = hash13(p3X, p3Y, p3z)
-    vxyZ = hash13(p3x, p3y, p3Z)
-    vXyZ = hash13(p3X, p3y, p3Z)
-    vxYZ = hash13(p3x, p3Y, p3Z)
-    vXYZ = hash13(p3X, p3Y, p3Z)
+    vxyz, vXyz, vxYz, vXYz, vxyZ, vXyZ, vxYZ, vXYZ = hash83(
+        p3x, p3y, p3z, p3X, p3Y, p3Z)
 
     a1 = vxyz + (vXyz - vxyz) * wx
     a2 = vxYz + (vXYz - vxYz) * wx
@@ -100,9 +144,9 @@ def double_perlin3D(x, y, z, a=4, d=2, octave=8, persistance=0.6, seed=42):
 
 def field(x, y, z, t):
     strength = 7. + .03 * np.log(1.e-6 + fract(np.sin(t) * 4373.11))
-    accum = 0
-    prev = 0.
-    tw = 0.
+    accum = np.zeros_like(x)
+    prev = np.zeros_like(x)
+    tw = np.zeros_like(x)
     p = x, y, z
     for i in range(32):
         mag = dot(p, p)

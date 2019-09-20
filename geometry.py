@@ -23,7 +23,7 @@ def reflection(d, n):
 
     u = dot(d, n) / dot(n, n)
 
-    return (xd - 2*u*xn, yd - 2*u*yn, zd-2*u*zn)
+    return (xd - 2 * u * xn, yd - 2 * u * yn, zd - 2 * u * zn)
 
 
 def normal(x, y, z, h, dx, dy, dz, A=0.01):

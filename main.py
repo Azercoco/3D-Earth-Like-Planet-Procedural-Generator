@@ -7,7 +7,7 @@ from noise import double_perlin3D, background
 from geometry import normal, cos_vec, reflection
 from color import colorize
 
-res = 1024
+res = 2048
 radius = 0.4
 
 multi_sampling = 1
@@ -182,11 +182,15 @@ def apply_illum(im_rgbref_base, normal_base, cloud_map, ilum=(1, 0.5, 1)):
     return im
 
 
+def gen_image(seed):
+    a, b, c = gen_rgbbase_and_normal(seed=seed)
+    im = apply_illum(a, b, c)
+    plt.axis("off")
+    plt.imshow(im)
+    plt.imsave("exemples/out"+str(seed)+".png", im)
+    plt.show()
+
+
 if __name__ == '__main__':
-    for seed in range(0, 100):
-        a, b, c = gen_rgbbase_and_normal(seed=seed)
-        im = apply_illum(a, b, c)
-        plt.axis("off")
-        plt.imshow(im)
-        plt.imsave("exemples/out"+str(seed)+".png", im)
-        plt.show()
+    for seed in range(0, 10):
+        gen_image(seed)
