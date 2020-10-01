@@ -28,10 +28,9 @@ def reflection(d, n):
 
 def normal(x, y, z, h, dx, dy, dz, A=0.01):
     '''
-x = R cos phi cos theta
-y = R sin phi cos theta
-z = R sin theta
-
+    x = R cos phi cos theta
+    y = R sin phi cos theta
+    z = R sin theta
     '''
 
     R = np.sqrt(x * x + y * y + z * z)

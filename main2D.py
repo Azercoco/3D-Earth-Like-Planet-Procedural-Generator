@@ -46,7 +46,8 @@ rgbref[:, 3] = rgbref[:, 3]
 
 heightmap = np.zeros((res, res, 3))
 
-heightmap[:, :, 0] = np.reshape(np.where(h > 0.5, (h - 0.5) * 2, 0), (res, res))
+heightmap[:, :, 0] = np.reshape(np.where(h > 0.5, (h - 0.5) * 2, 0),
+                                (res, res))
 heightmap[:, :, 1] = heightmap[:, :, 0]
 heightmap[:, :, 2] = heightmap[:, :, 0]
 

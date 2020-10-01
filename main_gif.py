@@ -21,13 +21,15 @@ ims = []
 os.mkdir('temp')
 
 for i in tqdm(range(N_frame)):
-    rgbref_base, normal_base, cmap = gen_rgbbase_and_normal(seed=436, rot=phi[i])
+    rgbref_base, normal_base, cmap = gen_rgbbase_and_normal(seed=436,
+                                                            rot=phi[i])
     im = apply_illum(rgbref_base, normal_base, cmap)
     plt.imsave("temp/out" + str(i) + ".png", im)
 
 os.system(
     "ffmpeg -r " + str(FPS) +
-    " -f image2 -s 1024x1024 -i temp/out%d.png -vcodec libx264 -crf 25  -pix_fmt yuv420p test.mp4"
+    " -f image2 -s 1024x1024 -i temp/out%d.png -vcodec libx264 -crf 25 "
+    "-pix_fmt yuv420p test.mp4"
 )
 
 shutil.rmtree('temp')
