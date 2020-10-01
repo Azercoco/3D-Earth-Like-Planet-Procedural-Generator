@@ -64,5 +64,5 @@ spec[:, :, 2] = spec[:, :, 0]
 
 
 plt.imsave("heightmap.png", heightmap)
-plt.imsave("rgb.png", rgb)
+plt.imsave("rgb.png", rgb.clip(0, 1))
 plt.imsave("spec.png", spec)
