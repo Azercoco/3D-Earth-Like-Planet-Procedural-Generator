@@ -44,11 +44,12 @@ rgbref[:, 1] = rgbref[:, 1] * i_var
 rgbref[:, 2] = rgbref[:, 2] * i_var
 rgbref[:, 3] = rgbref[:, 3]
 
-heigthmap = np.zeros((res, res, 3))
+heightmap = np.zeros((res, res, 3))
 
-heigthmap[:, :, 0] = np.reshape(np.where(h > 0.5, (h - 0.5) * 2, 0), (res, res))
-heigthmap[:, :, 1] = heigthmap[:, :, 0]
-heigthmap[:, :, 2] = heigthmap[:, :, 0]
+heightmap[:, :, 0] = np.reshape(np.where(h > 0.5, (h - 0.5) * 2, 0),
+                                (res, res))
+heightmap[:, :, 1] = heightmap[:, :, 0]
+heightmap[:, :, 2] = heightmap[:, :, 0]
 
 rgb = np.zeros((res, res, 3))
 rgb[:, :, 0] = np.reshape(rgbref[:, 0], (res, res))
@@ -62,6 +63,6 @@ spec[:, :, 1] = spec[:, :, 0]
 spec[:, :, 2] = spec[:, :, 0]
 
 
-plt.imsave("heigthmap.png", heigthmap)
-plt.imsave("rgb.png", rgb)
+plt.imsave("heightmap.png", heightmap)
+plt.imsave("rgb.png", rgb.clip(0, 1))
 plt.imsave("spec.png", spec)
