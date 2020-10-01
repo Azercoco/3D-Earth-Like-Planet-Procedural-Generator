@@ -1,18 +1,18 @@
 # An Earth-Like procedural planet generator
 
 
-#### Exemple 1
-![Exemple 1](exemples/out94.png)
+#### Example 1
+![Example 1](examples/out94.png)
 
-#### Exemple 2
-![Exemple 2](exemples/out95.png)
+#### Example 2
+![Example 2](examples/out95.png)
 
-#### Exemple 3
-![Exemple 3](exemples/out97.png)
+#### Example 3
+![Example 3](examples/out97.png)
 
-#### Exemple 4
-![Exemple 4](exemples/out98.png)
+#### Example 4
+![Example 4](examples/out98.png)
 
 ### Animation
 
-![Animation](exemples/anim_exemple.gif)
+![Animation](examples/anim_example.gif)

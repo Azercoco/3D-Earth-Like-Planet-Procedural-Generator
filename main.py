@@ -187,7 +187,7 @@ def gen_image(seed):
     im = apply_illum(a, b, c)
     plt.axis("off")
     plt.imshow(im)
-    plt.imsave("exemples/out"+str(seed)+".png", im)
+    plt.imsave("examples/out"+str(seed)+".png", im)
     plt.show()
 
 
